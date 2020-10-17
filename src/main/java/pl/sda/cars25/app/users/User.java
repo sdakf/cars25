@@ -1,4 +1,6 @@
-package pl.sda.cars25;
+package pl.sda.cars25.app.users;
+
+import pl.sda.cars25.app.BaseEntity;
 
 import javax.persistence.Entity;
 

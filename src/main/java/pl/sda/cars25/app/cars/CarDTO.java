@@ -1,10 +1,10 @@
-package pl.sda.cars25;
+package pl.sda.cars25.app.cars;
 
 import java.util.UUID;
 
 public class CarDTO {
-    private UUID id;
-    private Long version;
+    private UUID id; //to będzie puste dla nowego samochodu
+    private Long version;//to też będzie puste dla nowego samochodu
     private String model;
     private Colour colour;
 

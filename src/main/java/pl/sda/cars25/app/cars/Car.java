@@ -1,11 +1,15 @@
-package pl.sda.cars25;
+package pl.sda.cars25.app.cars;
+
+import pl.sda.cars25.app.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Table;
 import java.util.UUID;
 
 @Entity
+@Table(name = "Cars")
 public class Car extends BaseEntity {
 
     private String model;
@@ -25,8 +29,12 @@ public class Car extends BaseEntity {
     }
 
     public void update(CarDTO carDTO) {
-        this.colour = carDTO.getColour();
-        this.model = carDTO.getModel();
+        if (carDTO.getModel() != null) {
+            this.model = carDTO.getModel();
+        }
+        if (carDTO.getColour() != null) {
+            this.colour = carDTO.getColour();
+        }
     }
 
     public static Car apply(CarDTO carDTO) {

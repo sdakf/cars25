@@ -1,4 +1,4 @@
-package pl.sda.cars25;
+package pl.sda.cars25.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
