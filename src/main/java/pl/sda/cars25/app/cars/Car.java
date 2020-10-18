@@ -47,4 +47,12 @@ public class Car extends BaseEntity {
         car.model = carDTO.getModel();
         return car;
     }
+
+    public String getModel() {
+        return model;
+    }
+
+    public Colour getColour() {
+        return colour;
+    }
 }

@@ -1,5 +1,6 @@
 package pl.sda.cars25.app.cars;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +42,14 @@ public class CarController {
             @RequestParam(name = "model", required = false) String model,
             @RequestParam(name = "user_email", required = false) String userEmail) {
         List<CarDTO> byModel = carService.search(model, userEmail);
+        return ResponseEntity.status(200).body(byModel);
+    }
+
+    @GetMapping("/pagination")
+    public ResponseEntity<Page<Car>> search(
+            @RequestParam(name = "size", required = false) Integer size,
+            @RequestParam(name = "page", required = false) Integer page) {
+        Page<Car> byModel = carService.pagination(size, page);
         return ResponseEntity.status(200).body(byModel);
     }
 

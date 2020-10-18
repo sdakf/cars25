@@ -1,5 +1,7 @@
 package pl.sda.cars25.app.cars;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import pl.sda.cars25.app.cars.Car;
@@ -57,5 +59,11 @@ public class CarService {
                 .stream()
                 .map(car -> car.toDTO())
                 .collect(Collectors.toList());
+    }
+
+    public Page<Car> pagination(Integer size, Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Car> carPage = carRepository.findAll(pageRequest);
+        return carPage;
     }
 }
