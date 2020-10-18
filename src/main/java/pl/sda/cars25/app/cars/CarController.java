@@ -17,6 +17,7 @@ public class CarController {
         this.carService = carService;
     }
 
+    //    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping //Tworzenie nowego zasobu
     public ResponseEntity<CarDTO> saveNewCar(@RequestBody CarDTO carDTO) {
         if (carDTO.getId() != null) {
@@ -36,8 +37,10 @@ public class CarController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<CarDTO>> findByModel(@RequestParam String model) {
-        List<CarDTO> byModel = carService.findByModel(model);
+    public ResponseEntity<List<CarDTO>> search(
+            @RequestParam(name = "model", required = false) String model,
+            @RequestParam(name = "user_email", required = false) String userEmail) {
+        List<CarDTO> byModel = carService.search(model, userEmail);
         return ResponseEntity.status(200).body(byModel);
     }
 

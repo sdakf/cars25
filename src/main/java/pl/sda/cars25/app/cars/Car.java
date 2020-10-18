@@ -1,11 +1,9 @@
 package pl.sda.cars25.app.cars;
 
 import pl.sda.cars25.app.BaseEntity;
+import pl.sda.cars25.app.users.User;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +20,11 @@ public class Car extends BaseEntity {
     }
 
     public Car() {
+    }
+
+    public Car(String model, Colour colour) {
+        this.model = model;
+        this.colour = colour;
     }
 
     public CarDTO toDTO() {

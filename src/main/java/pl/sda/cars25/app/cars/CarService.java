@@ -6,6 +6,7 @@ import pl.sda.cars25.app.cars.Car;
 import pl.sda.cars25.app.cars.CarDTO;
 import pl.sda.cars25.app.cars.CarException;
 import pl.sda.cars25.app.cars.CarRepository;
+import pl.sda.cars25.app.users.UserRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,9 +15,11 @@ import java.util.stream.Collectors;
 public class CarService {
 
     private CarRepository carRepository;
+    private UserRepository userRepository;
 
-    public CarService(CarRepository carRepository) {
+    public CarService(CarRepository carRepository, UserRepository userRepository) {
         this.carRepository = carRepository;
+        this.userRepository = userRepository;
     }
 
     public CarDTO update(CarDTO carDTO) {
@@ -40,7 +43,16 @@ public class CarService {
                 .collect(Collectors.toList());
     }
 
-    public List<CarDTO> findByModel(String model) {
+    public List<CarDTO> search(String model, String userEmail) {
+        if (model != null & userEmail != null) {
+            List<Car> byModelAndUserEmail = userRepository.findByModelAndUserEmail(model, userEmail);
+            return byModelAndUserEmail.stream()
+                    .map(car -> car.toDTO())
+                    .collect(Collectors.toList());
+
+        }
+
+
         return carRepository.findByModelLike(model)
                 .stream()
                 .map(car -> car.toDTO())

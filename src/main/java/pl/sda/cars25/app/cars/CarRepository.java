@@ -12,4 +12,8 @@ public interface CarRepository extends JpaRepository<Car, UUID> {
 
     @Query("SELECT c FROM Car c WHERE upper(c.model) LIKE upper(concat(?1,'%'))") //jpql hql
     List<Car> findByModelLike(String model);
+
+//    @Query("select c FROM Car c join c.us")
+//    List<Car> findByModelAndUserEmail(String model, String userEmail);
+
 }
