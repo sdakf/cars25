@@ -11,7 +11,7 @@ import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 public class AppConfig {
 
     @Bean
-    @Primary
+    @Primary //to powoduje, że jeśli znalezione są dwa beany danego typu
     public PasswordEncoder passwordEncoder1() {
         return new BCryptPasswordEncoder();
     }
